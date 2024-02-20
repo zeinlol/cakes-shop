@@ -1,6 +1,7 @@
 <script setup>
 import {computed, defineProps, toRefs} from "vue";
 import {shoppingCardStore} from "@/stores/shopping-card.js";
+import {notificationsStore} from "@/stores/notifications.js";
 
 const props = defineProps({
   item: Object,
@@ -13,6 +14,18 @@ const borderClasses = {
 }
 const imgClassName = computed(() => borderClasses[item.value.frameStyle])
 const store = shoppingCardStore()
+const notifStore = notificationsStore()
+
+function addItemToOrderList() {
+  store.addItemToOrder({item: item})
+  notifStore.showNotification({
+        notification: {
+          message: `${item.value.title} added to order`,
+          image: item.value.image,
+        }
+      }
+  )
+}
 </script>
 
 <template>
@@ -29,7 +42,7 @@ const store = shoppingCardStore()
     <div class="shopping-item-price">
       {{ item.price }}€
     </div>
-    <button class="add-to-card-button" @click="store.addItemToOrder({item: item})">Add to card</button>
+    <button class="add-to-card-button" @click="addItemToOrderList()">Add to card</button>
   </div>
 </template>
 
@@ -57,8 +70,6 @@ const store = shoppingCardStore()
     font-weight: bold;
     text-transform: uppercase;
   }
-
-  /* Optional hover effect */
   .add-to-card-button:hover {
     background-color: #f0f0f0; /* Change background color on hover */
   }
