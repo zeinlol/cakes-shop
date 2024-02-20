@@ -1,0 +1,22 @@
+{
+  "name": "cakes_shop",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.4.19",
+    "pinia": "^2.1.7",
+    "sass": "^1.71.0",
+    "typescript": "^5.3.3",
+    "primevue": "^3.48.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "vite": "^5.0.12"
+  }
+}
